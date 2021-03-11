@@ -8,8 +8,26 @@ body{
   font-size: 100%;
 }
 
+button {
+  display:block;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  width:100%;
+}
+
+.bigButton{
+ 
+}
+
+.littleButton{
+  padding:0px;
+}
 .timer-container{
-  background-image: url('./logo512.png');
+  background-image: url('./pics/openFinal.gif'); 
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -19,32 +37,74 @@ body{
 }
 
 .timer {
-  background-color: rgba(0, 0, 0, 0.5);
+  
   display:flex;
   flex:column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 20em;
   
-  width: 100%;
-  height: 100%;
+  
+  margin:auto;
+  z-index:-1;
 }
 
-.timer div:last-child{
+.digits{
   
-  border: 1px solid white;
+  border: 5px solid white;
   border-radius: 1px ;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(1,1fr);
   margin-top: 1em;
-  padding: 1em;
+  padding: 0.5em;
   text-align: center;
-  font-size:4em;
+  font-size:5em;
+  z-index: 1 ;
+  background-color: teal;
+}
+
+.startButton{
+   
+    background-color: red;
+    position: relative;
+    z-index: 2;
+    margin-top: 11.8em;
+    width: 24em;
+  height: 13em;
+   
+    
+}
+
+.stopButton{
+  position: relative;
+  z-index: 2;
+  margin-top: 11.8em;
+  width: 24em;
+  height: 13em;
+ 
+  
+    background-color: blue;
 }
 
 
+
+.resumeButton{
+  position: relative;
+  z-index: 2;
+  margin-top: 11.8em;
+  width: 24em;
+  height: 13em;
+ 
+  
+    background-color: green;
+}
+.resetButton{
+  
+  position: relative;
+    background-color: yellow;
+    z-index: 2;
+}
 @media screen and (max-width: 480px){
-  .timer div :last-child{
+  .digits{
     margin-left: 4em;
     margin-right:2em;
     padding: 3em 1em;
