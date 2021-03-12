@@ -16,21 +16,15 @@ button {
   cursor:pointer;
   overflow: hidden;
   outline:none;
-  width:100%;
+  
 }
 
-.bigButton{
- 
-}
 
-.littleButton{
-  padding:0px;
-}
 .timer-container{
   background-image: url('./pics/openFinal.gif'); 
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
+  
   color:white;
   width:100vw;
   height:100vh;
@@ -42,66 +36,34 @@ button {
   flex:column;
   align-items: center;
   justify-content: center;
+  height: 50%;
   
-  
-  margin:auto;
-  z-index:-1;
 }
 
 .digits{
-  
-  border: 5px solid white;
-  border-radius: 1px ;
-  display: grid;
-  grid-template-columns: repeat(1,1fr);
-  margin-top: 1em;
-  padding: 0.5em;
-  text-align: center;
   font-size:5em;
-  z-index: 1 ;
-  background-color: teal;
+  border: 0.05em solid white;
+  position: absolute;
+  padding: 0.5em;
+ 
 }
 
-.startButton{
-   
-    background-color: red;
+.playButton{
+    
     position: relative;
-    z-index: 2;
-    margin-top: 11.8em;
-    width: 24em;
-  height: 13em;
-   
+    width:24em;
+    height: 13em;
     
 }
 
-.stopButton{
-  position: relative;
-  z-index: 2;
-  margin-top: 11.8em;
-  width: 24em;
-  height: 13em;
- 
-  
-    background-color: blue;
-}
 
-
-
-.resumeButton{
-  position: relative;
-  z-index: 2;
-  margin-top: 11.8em;
-  width: 24em;
-  height: 13em;
- 
-  
-    background-color: green;
-}
 .resetButton{
   
-  position: relative;
+    position: absolute;
     background-color: yellow;
-    z-index: 2;
+    margin-top: 1em;
+    margin-left: 11em;
+    
 }
 @media screen and (max-width: 480px){
   .digits{
