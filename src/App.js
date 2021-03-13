@@ -1,7 +1,7 @@
 import './App.css';
 import DisplayComponents from './ClockComponents/DisplayComponents.js';
 import ButtonComponents from './ClockComponents/ButtonComponents.js';
-import fiveAudio from './sounds/fiveSeconds.mp4';
+import fiveAudio from './sounds/fiveGround.mp4';
 import fifteenAudio from './sounds/15seconds.mp4';
 import React, {useState} from 'react';
 
@@ -18,8 +18,7 @@ function App() {
   
   
   function start(){
-    var fiveSeconds = new Audio(fiveAudio);
-    fiveSeconds.play();
+    
     run();
     setStatus(1);
     setInterv(setInterval(run,999));
