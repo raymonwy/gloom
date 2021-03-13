@@ -1,8 +1,10 @@
-
 import './App.css';
 import DisplayComponents from './ClockComponents/DisplayComponents.js';
 import ButtonComponents from './ClockComponents/ButtonComponents.js';
 import React, {useState} from 'react';
+
+var fiveSeconds = new Audio('./sounds/fiveSeconds.mp4');
+var fifteenSeconds = new Audio('./sounds/15Seconds.mp4');
 
 function App() {
   const [time, setTime] = useState({m:30,s:0});
@@ -16,7 +18,7 @@ function App() {
   function start(){
     run();
     setStatus(1);
-    setInterv(setInterval(run,1000));
+    setInterv(setInterval(run,999));
   }
 
   function blink(){
@@ -35,6 +37,7 @@ function App() {
      border.style.color = "white";
   }
 
+  
   function run() {
     if( updatedM === 0 && updatedS === 0){
       return;
@@ -45,12 +48,21 @@ function App() {
       updatedS = 60;
     }
     
-    if (bucket === 20){
+    if (bucket === 57){
       bucket = 0;
       blink();
       testDuration();
     }
-    if (bucket === 10){
+
+    if (bucket === 52){
+      fiveSeconds.play();
+    }
+
+    if(bucket === 36){
+      displayReset();
+    }
+    if (bucket === 42){
+      fifteenSeconds.play();
       blink();
     }
     updatedS--;
