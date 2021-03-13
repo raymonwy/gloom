@@ -11,34 +11,44 @@ function App() {
   var updatedM = time.m, updatedS = time.s;
   var bucket = 0;
 
+  
+  
   function start(){
     run();
-    
     setStatus(1);
     setInterv(setInterval(run,1000));
   }
 
   function blink(){
-    var border = document.getElementById('border');
-    console.log(border.style.animationIterationCount );
-    border.style.animation = 'none';
-    setTimeout(function() {border.style.animation = '';},10);
+    var border = document.getElementById("border");
+    (border.classList.contains("blink") ? border.classList.remove("blink") : border.classList.add("blink"));
   }
 
-  function test(){
-    var border = document.getElementById('border');
-    border.style.animation = 'none';
+  function testDuration(){
+    var border = document.getElementById("border");
+    ( (border.style.color === "red" ) ? border.style.color = "white" : border.style.color = "red");
+  }
+
+  function displayReset(){
+    var border = document.getElementById("border");
+     border.classList.remove("blink");
+     border.style.color = "white";
   }
 
   function run() {
-    console.log(bucket);
+    if( updatedM === 0 && updatedS === 0){
+      return;
+    }
+
     if (updatedS === 0){
       updatedM--;
       updatedS = 60;
     }
+    
     if (bucket === 20){
       bucket = 0;
-      test();
+      blink();
+      testDuration();
     }
     if (bucket === 10){
       blink();
@@ -49,16 +59,18 @@ function App() {
   }
 
   function stop(){
-    clearInterval(interv)
+    clearInterval(interv);
     setStatus(2);
   }
   
   function reset(){
-    clearInterval(interv)
+    clearInterval(interv);
     setStatus(0);
+    displayReset();
     return setTime({m:30,s:0});
   }
 
+  
   return (
     <section className="timer-container">
       <section className="timer">

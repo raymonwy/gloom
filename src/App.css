@@ -45,11 +45,12 @@ button {
   border: 0.05em solid white;
   position: absolute;
   padding: 0.5em;
-  animation: blink 1s infinite;
-  
   
 }
 
+.blink{
+  animation: blink 1s infinite;
+}
 
 @keyframes blink{50% {border-color:red;}}
 
