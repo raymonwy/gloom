@@ -1,10 +1,12 @@
 import './App.css';
 import DisplayComponents from './ClockComponents/DisplayComponents.js';
 import ButtonComponents from './ClockComponents/ButtonComponents.js';
+import fiveAudio from './sounds/fiveSeconds.mp4';
+import fifteenAudio from './sounds/15Seconds.mp4';
 import React, {useState} from 'react';
 
-var fiveSeconds = new Audio('./sounds/fiveSeconds.mp4');
-var fifteenSeconds = new Audio('./sounds/15Seconds.mp4');
+var fiveSeconds = new Audio(fiveAudio);
+var fifteenSeconds = new Audio(fifteenAudio);
 
 function App() {
   const [time, setTime] = useState({m:30,s:0});
