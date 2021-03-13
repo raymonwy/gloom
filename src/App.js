@@ -18,6 +18,8 @@ function App() {
   
   
   function start(){
+    var fiveSeconds = new Audio(fiveAudio);
+    fiveSeconds.play();
     run();
     setStatus(1);
     setInterv(setInterval(run,999));
