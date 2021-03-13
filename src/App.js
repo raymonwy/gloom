@@ -2,7 +2,7 @@ import './App.css';
 import DisplayComponents from './ClockComponents/DisplayComponents.js';
 import ButtonComponents from './ClockComponents/ButtonComponents.js';
 import fiveAudio from './sounds/fiveSeconds.mp4';
-import fifteenAudio from './sounds/15Seconds.mp4';
+import fifteenAudio from './sounds/15seconds.mp4';
 import React, {useState} from 'react';
 
 var fiveSeconds = new Audio(fiveAudio);
