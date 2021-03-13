@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/gloom/static/css/main.643437c9.chunk.css",
+    "main.js": "/gloom/static/js/main.b377660b.chunk.js",
+    "main.js.map": "/gloom/static/js/main.b377660b.chunk.js.map",
+    "runtime-main.js": "/gloom/static/js/runtime-main.2148ff25.js",
+    "runtime-main.js.map": "/gloom/static/js/runtime-main.2148ff25.js.map",
+    "static/js/2.7928cefb.chunk.js": "/gloom/static/js/2.7928cefb.chunk.js",
+    "static/js/2.7928cefb.chunk.js.map": "/gloom/static/js/2.7928cefb.chunk.js.map",
+    "static/js/3.b07213ec.chunk.js": "/gloom/static/js/3.b07213ec.chunk.js",
+    "static/js/3.b07213ec.chunk.js.map": "/gloom/static/js/3.b07213ec.chunk.js.map",
+    "index.html": "/gloom/index.html",
+    "static/css/main.643437c9.chunk.css.map": "/gloom/static/css/main.643437c9.chunk.css.map",
+    "static/js/2.7928cefb.chunk.js.LICENSE.txt": "/gloom/static/js/2.7928cefb.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/gloom/static/media/openFinal.166b9f60.gif",
+    "static/media/reset.0f037604.svg": "/gloom/static/media/reset.0f037604.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2148ff25.js",
+    "static/js/2.7928cefb.chunk.js",
+    "static/css/main.643437c9.chunk.css",
+    "static/js/main.b377660b.chunk.js"
+  ]
+}
