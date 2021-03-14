@@ -1,6 +1,8 @@
 
 import React from 'react';
-import refresh from '../pics/reset.svg'
+import refresh from '../pics/reset.svg';
+import add from '../pics/plus.svg';
+import subtract from  '../pics/minus.svg';
 
 function ButtonComponents(props) {
     return (
@@ -26,7 +28,10 @@ function ButtonComponents(props) {
             {(props.status !== 0)?
                 <div >
                     <img src={refresh}  className="resetButton" title="reset" alt="reset" onClick ={props.reset}></img>
+                    <img src={add} className = "addButton" title ="add second" alt = "add second" onClick = {props.addSecond} ></img>
+                    <img src={subtract} className = "addButton subtractButton" title ="subtract second" alt = "subtract second" onClick = {props.subtractSecond} ></img>
                 </div> : ""
+
             }       
             
        </div>

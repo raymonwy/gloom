@@ -78,6 +78,17 @@ button {
   width: 1em;
   height: 1em;
 }
+
+.addButton{
+  position: absolute;
+  height:1em;
+  width: 1em;
+  margin-top: 0.8em;
+}
+
+.subtractButton{
+  margin-left: 19.1em;
+}
 @media screen and (max-width: 480px){
   .digits{
     margin-left: 4em;
