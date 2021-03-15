@@ -1,26 +1,28 @@
 {
   "files": {
-    "main.css": "/gloom/static/css/main.643437c9.chunk.css",
-    "main.js": "/gloom/static/js/main.dfaf4544.chunk.js",
-    "main.js.map": "/gloom/static/js/main.dfaf4544.chunk.js.map",
-    "runtime-main.js": "/gloom/static/js/runtime-main.2148ff25.js",
-    "runtime-main.js.map": "/gloom/static/js/runtime-main.2148ff25.js.map",
-    "static/js/2.7928cefb.chunk.js": "/gloom/static/js/2.7928cefb.chunk.js",
-    "static/js/2.7928cefb.chunk.js.map": "/gloom/static/js/2.7928cefb.chunk.js.map",
-    "static/js/3.b07213ec.chunk.js": "/gloom/static/js/3.b07213ec.chunk.js",
-    "static/js/3.b07213ec.chunk.js.map": "/gloom/static/js/3.b07213ec.chunk.js.map",
+    "main.css": "/gloom/static/css/main.f00dd5b8.chunk.css",
+    "main.js": "/gloom/static/js/main.4f5ebfeb.chunk.js",
+    "main.js.map": "/gloom/static/js/main.4f5ebfeb.chunk.js.map",
+    "runtime-main.js": "/gloom/static/js/runtime-main.084509bb.js",
+    "runtime-main.js.map": "/gloom/static/js/runtime-main.084509bb.js.map",
+    "static/js/2.ab0384ea.chunk.js": "/gloom/static/js/2.ab0384ea.chunk.js",
+    "static/js/2.ab0384ea.chunk.js.map": "/gloom/static/js/2.ab0384ea.chunk.js.map",
+    "static/js/3.7ca49d2a.chunk.js": "/gloom/static/js/3.7ca49d2a.chunk.js",
+    "static/js/3.7ca49d2a.chunk.js.map": "/gloom/static/js/3.7ca49d2a.chunk.js.map",
     "index.html": "/gloom/index.html",
-    "static/css/main.643437c9.chunk.css.map": "/gloom/static/css/main.643437c9.chunk.css.map",
-    "static/js/2.7928cefb.chunk.js.LICENSE.txt": "/gloom/static/js/2.7928cefb.chunk.js.LICENSE.txt",
+    "static/css/main.f00dd5b8.chunk.css.map": "/gloom/static/css/main.f00dd5b8.chunk.css.map",
+    "static/js/2.ab0384ea.chunk.js.LICENSE.txt": "/gloom/static/js/2.ab0384ea.chunk.js.LICENSE.txt",
     "static/media/15seconds.3fe9fbac.mp4": "/gloom/static/media/15seconds.3fe9fbac.mp4",
-    "static/media/fiveSeconds.d4df11ee.mp4": "/gloom/static/media/fiveSeconds.d4df11ee.mp4",
+    "static/media/fiveGround.cb99c722.mp4": "/gloom/static/media/fiveGround.cb99c722.mp4",
+    "static/media/minus.bb9015cb.svg": "/gloom/static/media/minus.bb9015cb.svg",
     "static/media/App.css": "/gloom/static/media/openFinal.166b9f60.gif",
+    "static/media/plus.fd0eee75.svg": "/gloom/static/media/plus.fd0eee75.svg",
     "static/media/reset.0f037604.svg": "/gloom/static/media/reset.0f037604.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.2148ff25.js",
-    "static/js/2.7928cefb.chunk.js",
-    "static/css/main.643437c9.chunk.css",
-    "static/js/main.dfaf4544.chunk.js"
+    "static/js/runtime-main.084509bb.js",
+    "static/js/2.ab0384ea.chunk.js",
+    "static/css/main.f00dd5b8.chunk.css",
+    "static/js/main.4f5ebfeb.chunk.js"
   ]
 }
