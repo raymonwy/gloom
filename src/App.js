@@ -4,17 +4,19 @@ import ButtonComponents from './ClockComponents/ButtonComponents.js';
 import fiveAudio from './sounds/fiveGround.mp4';
 import fifteenAudio from './sounds/15seconds.mp4';
 import React, {useState} from 'react';
-import { prettyDOM } from '@testing-library/dom';
+
 
 var fiveSeconds = new Audio(fiveAudio);
+fiveSeconds.volume = 1;
 var fifteenSeconds = new Audio(fifteenAudio);
-var bucket = 0;
+fifteenSeconds.volume = 1;
 
 var testStart = 57;
 var testDuration = 33;
 var blinkDuration = 15;
 var preTestDuration = 5;
 var blinkStart = testStart - blinkDuration;
+var blankStart = testStart -(testDuration +blinkDuration);
 var nextTime = {m:0,s:0};
 var currTime = {m:30,s:0};
 var prevTime = {m:0,s:0};
@@ -22,32 +24,32 @@ var blinkDur = {m:0,s:0};
 var testDur = {m:0,s:0};
 var pretestDur = {m:0,s:0};
 
+
 function App() {
   const [time, setTime] = useState({m:30,s:0});
   const [interv,setInterv] = useState();
   const [status, setStatus] = useState(0);
   var updatedM = time.m, updatedS = time.s;
   
-  timeCalculate(currTime,nextTime,testStart);
-  timeCalculate(nextTime,blinkDur,-blinkDuration);
-  timeCalculate(nextTime,testDur,testDuration);
-  timeCalculate(nextTime,pretestDur,-preTestDuration);
+  if(status === 0){
+    timeCalculate(nextTime,currTime,testStart);
+    timeCalculate(blinkDur,nextTime,-blinkDuration);
+    timeCalculate(testDur,nextTime,testDuration);
+    timeCalculate(pretestDur,nextTime,-preTestDuration);
+  }
 
   function start(){
-    
-    
     run();
     setStatus(1);
     setInterv(setInterval(run,999));
   }
 
-  function setNewTime(timePeriod,m,s){
-    timePeriod.m = m;
-    timePeriod.s = s;
+  function setNewTime(to, from){
+    to.m = from.m;
+    to.s = from.s;
   }
 
-  function timeCalculate(from,to,change){
-    
+  function timeCalculate(to,from,change){
     if(change > from.s){
       var remainder = change - from.s;
       to.s = 60 - remainder;
@@ -57,36 +59,52 @@ function App() {
       to.s = from.s - change;
       to.m = from.m;
       if(to.s > 60){
-        to.s = from.s - 60;
+        to.s = to.s - 60;
         to.m = from.m + 1;
       }
     }
+    console.log("\nto :" + to.m + ":" + to.s)
   }
 
   function goBackTime(){
-      setNewTime(nextTime,currTime.m,currTime.s);
-      setNewTime(currTime,prevTime.m,prevTime.s);
-      timeCalculate(currTime,prevTime,-testStart);
-      timeCalculate(prevTime,testDur,testDuration);
-      timeCalculate(currTime,blinkDur,-blinkDuration);
+      setNewTime(nextTime,currTime);
+      setNewTime(currTime,prevTime);
+      timeCalculate(prevTime,currTime,-testStart);
+      timeCalculate(testDur, currTime, testDuration);
+      timeCalculate(blinkDur,currTime,-blinkDuration);
+      timeCalculate(pretestDur,currTime,-preTestDuration);
   }
-
+  
   function skipAheadTime(){
-      setNewTime(prevTime,currTime.m,currTime.s);
-      setNewTime(currTime,nextTime.m,nextTime.s);
-      timeCalculate(currTime,nextTime,testStart);
-      timeCalculate(currTime,testDur,testDuration);
-      timeCalculate(nextTime,blinkDur,-blinkDuration);
+      setNewTime(prevTime,currTime);
+      setNewTime(currTime,nextTime);
+      timeCalculate(nextTime,currTime,testStart);
+      timeCalculate(testDur,nextTime,testDuration);
+      timeCalculate(blinkDur,nextTime,-blinkDuration);
+      timeCalculate(pretestDur,nextTime ,-preTestDuration);
   }
 
-  function blink(){
+  function blinkStart(){
     var border = document.getElementById("border");
-    (border.classList.contains("blink") ? border.classList.remove("blink") : border.classList.add("blink"));
+    if (!(border.classList.contains("blink"))){
+      border.classList.add("blink");
+    } 
   }
 
-  function test(){
+  function blinkEnd(){
     var border = document.getElementById("border");
-    ( (border.style.color === "red" ) ? border.style.color = "white" : border.style.color = "red");
+    if (border.classList.contains("blink")) {
+      border.classList.remove("blink");
+    } 
+  }
+
+  function testBegin(){
+    var border = document.getElementById("border");
+    border.style.color = "red"; 
+  }
+  function testEnd(){
+    var border = document.getElementById("border");
+    border.style.color = "white" ;
   }
 
   function displayReset(){
@@ -105,21 +123,31 @@ function App() {
       updatedM--;
       updatedS = 60;
     }
-    if(updatedM === blinkDur.m && updatedS === blinkDur.s){
-      fifteenSeconds.play();
-      blink();
+    if((updatedM <= blinkDur.m && updatedS <= blinkDur.s) && (updatedM >= nextTime.m || updatedS > nextTime.s)){
+      
+      if(updatedM === blinkDur.m && updatedS === blinkDur.s){
+        fifteenSeconds.play();
+      }
+      blinkStart();
     }
-    if(updatedM === pretestDur.m && updatedS === pretestDur.s){
-      fiveSeconds.play();
-    }
-    if(updatedM === nextTime.m && updatedS === nextTime.s){
-      test();
-      blink();
-      skipAheadTime();
+    if((updatedM < nextTime.m || updatedS <= nextTime.s) && (updatedM > testDur.m || updatedS > testDur.s)){
+      if(updatedM === pretestDur.m && updatedS === pretestDur.s){
+        fiveSeconds.play();
+      }
+      blinkEnd();
+      testBegin();
     }
     if(updatedM === testDur.m && updatedS === testDur.s){
-      test();
+      skipAheadTime();
     }
+    
+    if(!((updatedM < nextTime.m || updatedS <= nextTime.s) && (updatedM > testDur.m || updatedS > testDur.s))){
+        testEnd();
+    }
+    if(!((updatedM <= blinkDur.m && updatedS <= blinkDur.s) && (updatedM > currTime.m || updatedS > currTime.s))){
+      blinkEnd();
+    }
+
     updatedS--;
     return setTime({m:updatedM,s:updatedS});
   }
@@ -155,14 +183,15 @@ function App() {
   
   function subtractSecond(){
     stop();
-    if(updatedM === nextTime.m && updatedS === nextTime.s){
+    if(updatedM === testDur.m && updatedS === testDur.s){
       skipAheadTime();
     }
-    if(updatedM !== 0 && updatedS !== 0){
-      updatedS--;
+    if(!(updatedM === 0 && updatedS === 0)){
       if(updatedS === 0){
+        updatedS = 60;
         updatedM--;
       }
+      updatedS--;
     }
     
     return setTime({m:updatedM,s:updatedS});
