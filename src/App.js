@@ -18,8 +18,8 @@ var preTestDuration = 5;
 var blinkStart = testStart - blinkDuration;
 var blankStart = testStart -(testDuration +blinkDuration);
 var nextTime = {m:0,s:0};
-var currTime = {m:30,s:0};
-var prevTime = {m:0,s:0};
+var currTime = {m:0,s:0};
+var prevTime = {m:30,s:0};
 var blinkDur = {m:0,s:0};
 var testDur = {m:0,s:0};
 var pretestDur = {m:0,s:0};
@@ -32,10 +32,11 @@ function App() {
   var updatedM = time.m, updatedS = time.s;
   
   if(status === 0){
+    timeCalculate(currTime,prevTime,testStart);
     timeCalculate(nextTime,currTime,testStart);
-    timeCalculate(blinkDur,nextTime,-blinkDuration);
-    timeCalculate(testDur,nextTime,testDuration);
-    timeCalculate(pretestDur,nextTime,-preTestDuration);
+    timeCalculate(blinkDur,currTime,-blinkDuration);
+    timeCalculate(testDur,currTime,testDuration);
+    timeCalculate(pretestDur,currTime,-preTestDuration);
   }
 
   function start(){
@@ -62,6 +63,10 @@ function App() {
         to.s = to.s - 60;
         to.m = from.m + 1;
       }
+      if(to.s === 60){
+        to.s = 0;
+        to.m++;
+      }
     }
     console.log("\nto :" + to.m + ":" + to.s)
   }
@@ -79,9 +84,9 @@ function App() {
       setNewTime(prevTime,currTime);
       setNewTime(currTime,nextTime);
       timeCalculate(nextTime,currTime,testStart);
-      timeCalculate(testDur,nextTime,testDuration);
-      timeCalculate(blinkDur,nextTime,-blinkDuration);
-      timeCalculate(pretestDur,nextTime ,-preTestDuration);
+      timeCalculate(testDur,currTime,testDuration);
+      timeCalculate(blinkDur,currTime,-blinkDuration);
+      timeCalculate(pretestDur,currTime ,-preTestDuration);
   }
 
   function blinkStart(){
@@ -123,27 +128,29 @@ function App() {
       updatedM--;
       updatedS = 60;
     }
-    if((updatedM <= blinkDur.m && updatedS <= blinkDur.s) && (updatedM >= nextTime.m || updatedS > nextTime.s)){
+    if((updatedM <= blinkDur.m && updatedS <= blinkDur.s) && (updatedM >= currTime.m || updatedS > currTime.s)){
       
       if(updatedM === blinkDur.m && updatedS === blinkDur.s){
         fifteenSeconds.play();
       }
       blinkStart();
     }
-    if((updatedM < nextTime.m || updatedS <= nextTime.s) && (updatedM > testDur.m || updatedS > testDur.s)){
+    if((updatedM < currTime.m || updatedS <= currTime.s) && (updatedM > testDur.m || updatedS > testDur.s)){
       if(updatedM === pretestDur.m && updatedS === pretestDur.s){
         fiveSeconds.play();
       }
       blinkEnd();
       testBegin();
     }
+
     if(updatedM === testDur.m && updatedS === testDur.s){
       skipAheadTime();
     }
     
-    if(!((updatedM < nextTime.m || updatedS <= nextTime.s) && (updatedM > testDur.m || updatedS > testDur.s))){
+    if(!((updatedM < currTime.m || updatedS <= currTime.s) && (updatedM > testDur.m || updatedS > testDur.s))){
         testEnd();
     }
+
     if(!((updatedM <= blinkDur.m && updatedS <= blinkDur.s) && (updatedM > currTime.m || updatedS > currTime.s))){
       blinkEnd();
     }
