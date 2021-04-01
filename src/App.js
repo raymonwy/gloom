@@ -32,6 +32,7 @@ function App() {
   var updatedM = time.m, updatedS = time.s;
   
   if(status === 0){
+    
     timeCalculate(currTime,prevTime,testStart);
     timeCalculate(nextTime,currTime,testStart);
     timeCalculate(blinkDur,currTime,-blinkDuration);
@@ -135,7 +136,7 @@ function App() {
       }
       blinkStart();
     }
-    if((updatedM < currTime.m || updatedS <= currTime.s) && (updatedM > testDur.m || updatedS > testDur.s)){
+    if((updatedM <= currTime.m || updatedS <= currTime.s) && (updatedM >= testDur.m || updatedS > testDur.s)){
       if(updatedM === pretestDur.m && updatedS === pretestDur.s){
         fiveSeconds.play();
       }
@@ -168,6 +169,8 @@ function App() {
     clearInterval(interv);
     setStatus(0);
     displayReset();
+    prevTime.m = 30;
+    prevTime.s = 0;
     return setTime({m:30,s:0});
   }
 
