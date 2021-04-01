@@ -11,10 +11,11 @@ fiveSeconds.volume = 1;
 var fifteenSeconds = new Audio(fifteenAudio);
 fifteenSeconds.volume = 1;
 
+var maxTime = {m:30,s:0};
 var testStart = 57;
 var testDuration = 33;
 var blinkDuration = 15;
-var preTestDuration = 5;
+var preTestDuration = 3;
 var blinkStart = testStart - blinkDuration;
 var blankStart = testStart -(testDuration +blinkDuration);
 var nextTime = {m:0,s:0};
@@ -129,17 +130,17 @@ function App() {
       updatedM--;
       updatedS = 60;
     }
-    if((updatedM <= blinkDur.m && updatedS <= blinkDur.s) && (updatedM >= currTime.m || updatedS > currTime.s)){
+    if((updatedM <= blinkDur.m && updatedS <= blinkDur.s) && (updatedM >= currTime.m || updatedS >= currTime.s)){
       
       if(updatedM === blinkDur.m && updatedS === blinkDur.s){
         fifteenSeconds.play();
       }
-      blinkStart();
-    }
-    if((updatedM <= currTime.m || updatedS <= currTime.s) && (updatedM >= testDur.m || updatedS > testDur.s)){
       if(updatedM === pretestDur.m && updatedS === pretestDur.s){
         fiveSeconds.play();
       }
+      blinkStart();
+    }
+    if((updatedM <= currTime.m && updatedS <= currTime.s) && (updatedM >= testDur.m || updatedS >= testDur.s)){
       blinkEnd();
       testBegin();
     }
@@ -176,12 +177,12 @@ function App() {
 
   function addSecond(){
     stop();
-    if(updatedM === prevTime.m && updatedS === prevTime.s){
-      goBackTime();
-    }
-    if(updatedM !== 30){
+    if(updatedM !== maxTime.m && updatedS !== maxTime.s){
+      if(updatedM === prevTime.m && updatedS === prevTime.s){
+        goBackTime();
+      }
+    
       updatedS++;
-      
       if(updatedS === 60){
          updatedM++;
          updatedS = 0;
